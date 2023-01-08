@@ -1,21 +1,372 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+
 :root {
-  --icon-height: 20px;
-  --icon-width: 20px;
+  --icon-height: 30px;
+  --border-radius: 9999px;
+  --twitter-color: #00aded;
+  --color-gray-dark: rgba(100, 100, 100, 0.5);
+  --color-gray-light: rgba(201, 201, 201, 0.5);
 }
 * {
   box-sizing: border-box;
   margin: unset;
   padding: unset;
   list-style: none;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
 }
-
-.icon {
+svg {
   height: var(--icon-height);
-  width: var(--icon-width);
   object-fit: contain;
 }
 
-.sidebar .menu svg {
-  height: 20px;
+.svg {
+  height: var(--icon-height);
+  stroke-width: 2px;
+  object-fit: contain;
+}
+
+.userImg {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.mediaImg {
+  width: 100%;
+  object-fit: contain;
+}
+.icon-img {
+  height: var(--icon-height);
+  object-fit: contain;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 3.5fr;
+  height: 100vh;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0 10px;
+  height: 30px;
+  background-color: var(--twitter-color);
+  border-radius: var(--border-radius);
+  color: white;
+  cursor: pointer;
+}
+
+.userAvatar {
+  height: 50px;
+  width: 50px;
+  border-radius: var(--border-radius);
+}
+
+/* ============================= sidebar =========================*/
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--color-gray-light);
+  padding: 10px 20px;
+}
+
+.sidebar .icon.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+}
+
+.sidebar .icon.menu:hover {
+  background-color: var(--color-gray-light);
+  border-radius: var(--border-radius);
+}
+
+.sidebar .sidebar-wrapper .menu {
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  color: black;
+  max-width: fit-content;
+  padding: 15px 20px;
+}
+
+.sidebar .sidebar-wrapper .menu:hover {
+  color: var(--twitter-color);
+  background-color: var(--color-gray-light);
+  transition: all ease-in 200ms;
+}
+
+.sidebar .sidebar-wrapper .menu a {
+  display: flex;
+  align-items: center;
+  color: inherit;
+}
+
+.sidebar .sidebar-wrapper .menu svg {
+  object-fit: contain;
+  stroke-width: 2px;
+  margin-right: 10px;
+  color: inherit;
+  height: var(--icon-height);
+}
+
+.sidebar .sidebar-wrapper .menu p {
+  font-weight: 500;
+  font-size: large;
+}
+
+.sidebar .sidebar-wrapper .tweet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  font-size: large;
+  background-color: var(--twitter-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+}
+
+.sidebar .sidebar-wrapper .tweet:hover {
+  opacity: 0.9;
+}
+
+/* =========================================== Sections */
+.section {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  overflow-y: scroll;
+}
+
+/* =========================================== Feed ============================ */
+.feed .top {
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  position: sticky;
+  background: rgba(255, 255, 255, 0.3);
+  justify-content: space-between;
+}
+.feed .top svg {
+  transition: all ease-out 300ms;
+  cursor: pointer;
+}
+
+.feed .top svg:hover {
+  transform: rotate(180deg);
+  color: var(--twitter-color);
+}
+
+.feed .top svg:active {
+  transform: scale(125%);
+}
+
+.feed .tweet-box {
+  margin-top: 10px;
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.feed .tweet-box .tweet-box-wrapper {
+  gap: 10px;
+  margin: 10px;
+  display: flex;
+  flex: 1;
+}
+
+.feed .tweet-box .tweet-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.feed .tweet-box .tweet-form input {
+  font-size: 18px;
+  border: none;
+  height: 40px;
+}
+
+.feed .tweet-box .tweet-form input:focus {
+  outline: none;
+}
+.feed .tweet-box .tweet-form .tweet-form-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  margin-top: 10px;
+}
+.feed .tweet-box .tweet-form-icon svg {
+  margin-right: 10px;
   width: 20px;
+  color: var(--twitter-color);
+  cursor: pointer;
+  transition: all ease-out 150ms;
+}
+
+.feed .tweet-box .tweet-form-icon svg:hover {
+  transform: scale(1.5);
+}
+.feed .tweet-box .tweet-form-icon svg:active {
+  transform: scale(0.5);
+}
+
+/* ================================== Tweet feeds ================================= */
+.feed .tweet-feeds {
+  margin: 10 0px;
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.feed .tweet-feeds .tweet-feeds-wrapper {
+  display: flex;
+  margin: 10px;
+}
+.feed .tweet-feeds .main-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0 10px;
+}
+.feed .tweet-feeds .main-feed .main-top {
+  display: flex;
+  justify-content: space-between;
+}
+.feed .tweet-feeds .main-feed .main-top .userInfo {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+.feed .tweet-feeds .main-media {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  max-width: 482px;
+  max-height: 482px;
+  border-radius: 20px;
+  border: 1px solid var(--color-gray-dark);
+}
+/* ================================== Widget ============================== */
+.widget {
+  border-left: 1px solid var(--color-gray-light);
+  padding: 10px 20px;
+}
+
+.widget .top {
+  position: sticky;
+  top: 10px;
+  display: flex;
+  background-color: var(--color-gray-light);
+  color: var(--color-gray-dark);
+  border-radius: var(--border-radius);
+  align-items: center;
+  padding: 10px 20px;
+  gap: 10px;
+}
+.widget .top svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2px;
+}
+
+.widget .top .search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+}
+
+.widget .top .search-input:focus {
+  outline: none;
+}
+
+.widget .widget-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-gray-light);
+  border-radius: 20px;
+  margin: 10px 0;
+}
+
+.widget .widget-wrapper > div h3 {
+  padding: 10px 20px;
+}
+
+.widget .widget-wrapper .trend {
+  padding: 10px 20px;
+}
+
+.widget .widget-wrapper .trend:hover {
+  background-color: var(--color-gray-light);
+}
+
+/* ================== Media Query ========================== */
+/* ================ Large Screen ===============================*/
+
+@media screen and (max-width: 1278px) {
+  :root {
+    --icon-height: 25px;
+  }
+
+  .main-container {
+    grid-template-columns: 0.5fr 3.5fr;
+  }
+  .section {
+    grid-template-columns: 2fr 1.5fr;
+  }
+  .sidebar .sidebar-wrapper {
+    display: grid;
+    place-content: center;
+  }
+  .sidebar .sidebar-wrapper .menu {
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+  }
+
+  .sidebar .sidebar-wrapper .menu svg {
+    margin-right: auto;
+  }
+
+  .sidebar .sidebar-wrapper li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebar .sidebar-wrapper .menu p {
+    display: none;
+  }
+}
+
+/* ========================= Medium Screen ========================= */
+@media screen and (max-width: 1004px) {
+  .section {
+    grid-template-columns: 2fr;
+  }
+  .widget {
+    display: none;
+  }
+}
+
+/* ============================= Small Screen ================ */
+@media screen and (max-width: 500px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+  }
 }
