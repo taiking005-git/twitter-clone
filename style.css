@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --icon-height: 30px;
   --border-radius: 9999px;
@@ -43,8 +47,10 @@ svg {
 
 .main-container {
   display: grid;
+  place-content: center;
   grid-template-columns: 1fr 3.5fr;
   height: 100vh;
+  width: 100vw;
 }
 
 .btn {
@@ -61,7 +67,25 @@ svg {
   color: white;
   cursor: pointer;
 }
+.badge {
+  position: absolute;
+  top: 13px;
+  left: 40px;
+  padding: 3px;
+  border-radius: var(--border-radius);
+  background-color: var(--twitter-color);
+}
 
+.count {
+  position: absolute;
+  top: 10px;
+  left: 32px;
+  padding: 2px 5px;
+  border-radius: var(--border-radius);
+  background-color: var(--twitter-color);
+  color: white;
+  font-size: small;
+}
 .userAvatar {
   height: 50px;
   width: 50px;
@@ -90,6 +114,7 @@ svg {
 }
 
 .sidebar .sidebar-wrapper .menu {
+  position: relative;
   display: flex;
   align-items: center;
   border-radius: var(--border-radius);
@@ -112,6 +137,7 @@ svg {
 }
 
 .sidebar .sidebar-wrapper .menu svg {
+  position: relative;
   object-fit: contain;
   stroke-width: 2px;
   margin-right: 10px;
@@ -157,7 +183,7 @@ svg {
   padding: 10px;
   display: flex;
   position: sticky;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.9);
   justify-content: space-between;
 }
 .feed .top svg {
@@ -196,7 +222,7 @@ svg {
 .feed .tweet-box .tweet-form input {
   font-size: 18px;
   border: none;
-  height: 40px;
+  height: 50px;
 }
 
 .feed .tweet-box .tweet-form input:focus {
@@ -226,16 +252,18 @@ svg {
 
 /* ================================== Tweet feeds ================================= */
 .feed .tweet-feeds {
-  margin: 10 0px;
   border-bottom: 1px solid var(--color-gray-light);
+  display: flex;
 }
 
 .feed .tweet-feeds .tweet-feeds-wrapper {
+  flex: 1;
   display: flex;
   margin: 10px;
 }
 .feed .tweet-feeds .main-feed {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 5px;
   margin: 0 10px;
@@ -261,7 +289,7 @@ svg {
 /* ================================== Widget ============================== */
 .widget {
   border-left: 1px solid var(--color-gray-light);
-  padding: 10px 20px;
+  padding: 10px 45px;
 }
 
 .widget .top {
@@ -306,9 +334,33 @@ svg {
 .widget .widget-wrapper .trend {
   padding: 10px 20px;
 }
-
+.widget .widget-wrapper .who-to-follow .follow:hover,
 .widget .widget-wrapper .trend:hover {
   background-color: var(--color-gray-light);
+}
+
+.widget .widget-wrapper .who-to-follow .follow {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.widget .widget-wrapper .who-to-follow .user-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 10px;
+}
+.widget .widget-wrapper .who-to-follow .follow-btn {
+  padding: 8px 20px;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: white;
+  font-size: medium;
+}
+
+.widget .widget-wrapper .who-to-follow .follow-btn:hover {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* ================== Media Query ========================== */
@@ -319,6 +371,15 @@ svg {
     --icon-height: 25px;
   }
 
+  .badge {
+    top: 14px;
+    left: 33px;
+  }
+
+  .count {
+    top: 10px;
+    left: 25px;
+  }
   .main-container {
     grid-template-columns: 0.5fr 3.5fr;
   }
@@ -351,22 +412,87 @@ svg {
 }
 
 /* ========================= Medium Screen ========================= */
+
 @media screen and (max-width: 1004px) {
-  .section {
-    grid-template-columns: 2fr;
+  .main-container {
+    display: grid;
+    place-content: center;
+    grid-template-columns: 0.5fr 3.5fr;
   }
-  .widget {
+  .section {
+    grid-template-columns: 2.5fr 1fr;
+  }
+  .widget .widget-wrapper,
+  .widget .top {
     display: none;
   }
 }
 
+@media screen and (max-width: 900px) {
+  .main-container {
+    position: relative;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 0.5fr 3.5fr;
+  }
+
+  .section {
+    grid-template-columns: 3.3fr 0.2fr;
+  }
+}
 /* ============================= Small Screen ================ */
 @media screen and (max-width: 500px) {
   .main-container {
+    position: relative;
+    grid-template-columns: 1fr;
+  }
+  .section {
     grid-template-columns: 1fr;
   }
 
   .sidebar {
+    border-top: 1px solid var(--color-gray-light);
+    background-color: white;
+    position: absolute;
+    padding: 5px 20px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .sidebar .sidebar-wrapper {
+    display: flex;
+  }
+
+  .sidebar .sidebar-wrapper .icon.menu,
+  .sidebar .sidebar-wrapper .tweet,
+  .sidebar .sidebar-wrapper .menu:nth-child(5),
+  .sidebar .sidebar-wrapper .menu:nth-child(6),
+  .sidebar .sidebar-wrapper .menu:nth-child(7) {
+    display: none;
+  }
+
+  .sidebar .sidebar-wrapper .menu-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+  }
+
+  .sidebar .sidebar-wrapper .tweet {
+    display: flex;
+    position: absolute;
+    top: -73px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .feed {
+    margin-bottom: 50px;
+  }
+
+  .feed .tweet-box .tweet-form-icon svg:nth-child(5) {
     display: none;
   }
 }
