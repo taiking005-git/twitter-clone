@@ -41,8 +41,7 @@ svg {
   object-fit: contain;
 }
 .icon-img {
-  height: var(--icon-height);
-  object-fit: contain;
+  width: var(--icon-height);
 }
 
 .main-container {
@@ -98,21 +97,24 @@ svg {
   flex-direction: column;
   border-right: 1px solid var(--color-gray-light);
   padding: 10px 20px;
+  height: 100vh;
 }
-
-.sidebar .icon.menu {
+.sidebar .icon {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 50px;
+  max-width: fit-content;
+  padding: 20px;
 }
-
-.sidebar .icon.menu:hover {
+.sidebar .icon:hover {
   background-color: var(--color-gray-light);
   border-radius: var(--border-radius);
 }
-
+.sidebar .sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
 .sidebar .sidebar-wrapper .menu {
   position: relative;
   display: flex;
@@ -154,8 +156,6 @@ svg {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
-  width: 100%;
   height: 50px;
   font-size: large;
   background-color: var(--twitter-color);
@@ -169,6 +169,25 @@ svg {
   opacity: 0.9;
 }
 
+.sidebar .sidebar-wrapper .profile-info {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  width: 100%;
+  cursor: pointer;
+}
+.sidebar .sidebar-wrapper .profile-info:hover {
+  background-color: var(--color-gray-light);
+}
+
+.sidebar .sidebar-wrapper .info-container {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 /* =========================================== Sections */
 .section {
   display: grid;
@@ -387,8 +406,7 @@ svg {
     grid-template-columns: 2fr 1.5fr;
   }
   .sidebar .sidebar-wrapper {
-    display: grid;
-    place-content: center;
+    align-items: center;
   }
   .sidebar .sidebar-wrapper .menu {
     justify-content: center;
@@ -407,6 +425,15 @@ svg {
   }
 
   .sidebar .sidebar-wrapper .menu p {
+    display: none;
+  }
+  .sidebar .sidebar-wrapper .profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: fit-content;
+  }
+  .sidebar .sidebar-wrapper .info-container {
     display: none;
   }
 }
@@ -441,6 +468,11 @@ svg {
   }
 }
 /* ============================= Small Screen ================ */
+@media screen and (max-width: 700px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+}
 @media screen and (max-width: 500px) {
   .main-container {
     position: relative;
