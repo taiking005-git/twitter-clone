@@ -10,6 +10,14 @@ html {
   --twitter-color: #00aded;
   --color-gray-dark: rgba(100, 100, 100, 0.5);
   --color-gray-light: rgba(201, 201, 201, 0.5);
+  /* --fs-xl: clamp(6rem, 12vw+12rem, 6rem); */
+  --fs-xl: clamp(1rem, 1vw + 0.5rem, 2rem);
+  --fs-md: clamp(1rem, 1vw + 0.5rem, 1.2rem);
+  --fs-sm: clamp(0.8rem, 1vw + 0.5rem, 1rem);
+}
+body {
+  min-height: 100vh;
+  width: 100vw;
 }
 * {
   box-sizing: border-box;
@@ -44,6 +52,15 @@ svg {
   width: var(--icon-height);
 }
 
+.more-btn {
+  padding: 5px;
+  border-radius: var(--border-radius);
+}
+.more-btn:hover {
+  max-width: fit-content;
+  background-color: var(--color-gray-light);
+}
+
 .main-container {
   display: grid;
   place-content: center;
@@ -58,7 +75,7 @@ svg {
   align-items: center;
   border: none;
   font-weight: 500;
-  font-size: 16px;
+  font-size: var(--fs-md);
   padding: 0 10px;
   height: 30px;
   background-color: var(--twitter-color);
@@ -73,6 +90,15 @@ svg {
   padding: 3px;
   border-radius: var(--border-radius);
   background-color: var(--twitter-color);
+}
+
+.userName {
+  font-size: var(--fs-md);
+  font-weight: 500;
+}
+.userTag {
+  font-size: var(--fs-sm);
+  color: gray;
 }
 
 .count {
@@ -97,7 +123,6 @@ svg {
   flex-direction: column;
   border-right: 1px solid var(--color-gray-light);
   padding: 10px 20px;
-  height: 100vh;
 }
 .sidebar .icon {
   display: flex;
@@ -149,7 +174,7 @@ svg {
 
 .sidebar .sidebar-wrapper .menu p {
   font-weight: 500;
-  font-size: large;
+  font-size: var(--fs-xl);
 }
 
 .sidebar .sidebar-wrapper .tweet {
@@ -157,16 +182,20 @@ svg {
   justify-content: center;
   align-items: center;
   height: 50px;
-  font-size: large;
+  font-size: var(--fs-md);
   background-color: var(--twitter-color);
   border-radius: var(--border-radius);
   cursor: pointer;
   font-weight: 500;
   color: white;
+  transition: all ease-in 300ms;
 }
 
 .sidebar .sidebar-wrapper .tweet:hover {
   opacity: 0.9;
+}
+.sidebar .sidebar-wrapper .tweet:active {
+  transform: scale(110%);
 }
 
 .sidebar .sidebar-wrapper .profile-info {
@@ -176,6 +205,11 @@ svg {
   border-radius: var(--border-radius);
   width: 100%;
   cursor: pointer;
+}
+
+.sidebar .sidebar-wrapper .profile-info .info {
+  display: flex;
+  flex-direction: column;
 }
 .sidebar .sidebar-wrapper .profile-info:hover {
   background-color: var(--color-gray-light);
@@ -239,7 +273,7 @@ svg {
 }
 
 .feed .tweet-box .tweet-form input {
-  font-size: 18px;
+  font-size: var(--fs-md);
   border: none;
   height: 50px;
 }
@@ -375,7 +409,7 @@ svg {
   border-radius: var(--border-radius);
   border: none;
   background-color: white;
-  font-size: medium;
+  font-size: var(--fs-md);
 }
 
 .widget .widget-wrapper .who-to-follow .follow-btn:hover {
@@ -482,25 +516,25 @@ svg {
     grid-template-columns: 1fr;
   }
 
-  .sidebar {
+  .sidebar .sidebar-wrapper {
     border-top: 1px solid var(--color-gray-light);
-    background-color: white;
+    background-color: #fff;
     position: absolute;
-    padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
     bottom: 0;
     right: 0;
     left: 0;
   }
-
-  .sidebar .sidebar-wrapper {
-    display: flex;
-  }
-
-  .sidebar .sidebar-wrapper .icon.menu,
+  .sidebar .sidebar-wrapper .icon-img,
   .sidebar .sidebar-wrapper .tweet,
   .sidebar .sidebar-wrapper .menu:nth-child(5),
   .sidebar .sidebar-wrapper .menu:nth-child(6),
-  .sidebar .sidebar-wrapper .menu:nth-child(7) {
+  .sidebar .sidebar-wrapper .menu:nth-child(7),
+  .sidebar .sidebar-wrapper .menu:nth-child(8) {
     display: none;
   }
 
@@ -514,8 +548,9 @@ svg {
   .sidebar .sidebar-wrapper .tweet {
     display: flex;
     position: absolute;
-    top: -73px;
-    right: 20px;
+    box-shadow: 4px 5px 4px 0 rgba(100, 100, 100, 0.5);
+    top: -80px;
+    right: 30px;
     width: 50px;
     height: 50px;
   }
